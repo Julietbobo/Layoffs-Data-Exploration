@@ -13,7 +13,7 @@ create table layoffs1 like layoffs;
 insert into layoffs1 select*from layoff;
 ```
       
-- Then wrote a query to remove duplicates. I achived this by creating an extra row column for row numbers and used  the row_number() window function to identify rows with a row number of greater than and delete them since they would be duplicates.
+- Then wrote a query to remove duplicates. I achieved this by creating an extra row column for row numbers and used  the row_number() window function to identify rows with a row number of greater than 1 and delete them since they would be duplicates.
 
 ```
 alter table layoffs1 add column row_num int;
