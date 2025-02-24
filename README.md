@@ -78,5 +78,12 @@ group by months order by 1)
 
 8. Ranked the company by the number of layoffs for each year.
 
-
+```
+with temp (company, years, totals) as
+ (select company, year(date) as years, sum(total_laid_off) as totals from layoffs1
+ where total_laid_off is not null group by company, years, total_laid_off order by 2 asc),
+ temp2 as 
+ (select *, dense_rank() over (partition by years order by years, totals desc) as ranks from temp)
+ select * from temp2 where years is not null;
+```
 ![rank layoffs by company for each year](https://github.com/user-attachments/assets/d6ec361f-6ecb-4bf0-972c-235fd3cb8bb6)
