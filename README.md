@@ -49,7 +49,7 @@ where (t1.industry is null or t1.industry ='') and (t2.industry is not null and 
 
 
 ### Data Exploration
-- Some of the questions i sought to ask were:
+- Some of the questions i sought to answer were:
   1.  find the most to least layoffs
      `select company, industry, total_laid_off, percentage_laid_off from layoffs1 order by 4 desc;`
   2.  sum of layoffs by country
@@ -64,8 +64,7 @@ where (t1.industry is null or t1.industry ='') and (t2.industry is not null and 
  select country, round(avg(percentage_laid_off),2) as avg_layoff , sum(total_laid_off) as total_layoffs from layoffs1
  where total_laid_off is not null  group by country order by 2 desc ;
 ```
-  6.  which company had the most layoffs by avg of the  percentage
-  7.  running total of the layoffs
+  6.  running total of the layoffs
  
   ```
 with temp as(select substring(date, 1,7)  as months, sum(total_laid_off) as totals from layoffs1
